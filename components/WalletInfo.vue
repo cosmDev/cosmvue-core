@@ -1,5 +1,4 @@
-<template> 
-  <div class="grid">
+<template>  
     <div>
       <article v-if="isLogged">
         <header>Wallet Info</header>
@@ -37,8 +36,7 @@
         <header class="errorSection">Error</header>   
         <h6>Please connect your wallet</h6>     
       </article> 
-    </div> 
-  </div>
+    </div>  
 </template>
 
 <script setup>
