@@ -2,8 +2,8 @@
   <div class="grid">
     <div>
       <article v-if="isLogged">
-        <hgroup>
-          <header>Wallet Info</header>
+        <header>Wallet Info</header>
+        <hgroup>          
           <p style="font-size: 20px;">{{ props.addressWallet }}</p>
         </hgroup>  
         <table> 
