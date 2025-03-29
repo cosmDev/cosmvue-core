@@ -1,5 +1,4 @@
-<template>  
-    <div>
+<template>   
       <article v-if="isLogged">
         <header>Wallet Info</header>
         <hgroup>          
@@ -35,8 +34,7 @@
       <article v-else class="errorSection">
         <header class="errorSection">Error</header>   
         <h6>Please connect your wallet</h6>     
-      </article> 
-    </div>  
+      </article>  
 </template>
 
 <script setup>
