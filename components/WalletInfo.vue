@@ -5,9 +5,7 @@
         <hgroup>
           <h2>Wallet Info</h2>
           <p style="font-size: 20px;">{{ props.addressWallet }}</p>
-        </hgroup>
-        <header>
-          <p>Wallet Info</p><small>{{ props.addressWallet }}</small></header>        
+        </hgroup>  
         <table> 
           <tbody>
             <tr>
