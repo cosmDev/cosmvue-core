@@ -31,7 +31,7 @@
           </tfoot>
         </table>
       </article>  
-      <article v-else class="pico-background-red-600">
+      <article v-else class="errorSection">
         <header>Please connect your wallet</header>        
       </article> 
     </div> 
@@ -48,3 +48,10 @@
 
   console.log(props.addressWallet)
 </script>
+
+<style>
+  .errorSection {
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 254, 254);
+  }
+</style>
