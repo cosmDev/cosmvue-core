@@ -2,12 +2,10 @@
   <div class="grid">
     <div>
       <article v-if="isLogged">
-        <header>
           <hgroup>
             <h2>Wallet Info</h2>
             <p>{{ props.addressWallet }}</p>
-          </hgroup>          
-        </header>        
+          </hgroup>        
         <table> 
           <tbody>
             <tr>
