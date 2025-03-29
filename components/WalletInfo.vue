@@ -4,7 +4,7 @@
       <article v-if="isLogged">
         <hgroup>
           <h2>Wallet Info</h2>
-          <p class="viewAddress">{{ props.addressWallet }}</p>
+          <p style="font-size: 20px;">{{ props.addressWallet }}</p>
         </hgroup>
         <header>
           <p>Wallet Info</p><small>{{ props.addressWallet }}</small></header>        
