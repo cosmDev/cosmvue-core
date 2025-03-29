@@ -1,9 +1,9 @@
 <template> 
   <div class="grid">
     <div>
-      <article>
+      <article v-if="isLogged">
         <header>Wallet Info</header>
-        {{ props.addressWallet }}
+        <h6>{{ props.addressWallet }}</h6>
         <table> 
           <tbody>
             <tr>
@@ -31,11 +31,20 @@
           </tfoot>
         </table>
       </article>  
+      <article v-else class="pico-background-red-600">
+        <header>Please connect your wallet</header>        
+      </article> 
     </div> 
   </div>
 </template>
 
 <script setup>
   const props = defineProps(['addressWallet'])
+  let isLogged = false
+
+  if (props.addressWallet && props.addressWallet.trim() !== '') {
+    isLogged = true;
+  }
+
   console.log(props.addressWallet)
 </script>
