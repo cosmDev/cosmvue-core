@@ -2,7 +2,12 @@
   <div class="grid">
     <div>
       <article v-if="isLogged">
-        <header>Wallet Info - <small>{{ props.addressWallet }}</small></header>        
+        <header>
+          <hgroup>
+            <h2>Wallet Info</h2>
+            <p>{{ props.addressWallet }}</p>
+          </hgroup>          
+        </header>        
         <table> 
           <tbody>
             <tr>
