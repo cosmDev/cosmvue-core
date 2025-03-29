@@ -3,8 +3,8 @@
     <div>
       <article v-if="isLogged">
         <hgroup>
-          <h2>Get inspired with CSS</h2>
-          <p>How to use CSS to add glam to your Website?</p>
+          <h2>Wallet Info</h2>
+          <p>{{ props.addressWallet }}</p>
         </hgroup>
         <header>
           <p>Wallet Info</p><small>{{ props.addressWallet }}</small></header>        
