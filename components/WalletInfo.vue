@@ -3,6 +3,7 @@
     <div>
       <article>
         <header>Wallet Info</header>
+        {{ props.addressWallet }}
         <table> 
           <tbody>
             <tr>
@@ -33,3 +34,8 @@
     </div> 
   </div>
 </template>
+
+<script setup>
+  const props = defineProps(['addressWallet'])
+  console.log(props.addressWallet)
+</script>
