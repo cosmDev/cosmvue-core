@@ -4,7 +4,7 @@
       <article v-if="isLogged">
         <hgroup>
           <h2>Wallet Info</h2>
-          <p>{{ props.addressWallet }}</p>
+          <p class="viewAddress">{{ props.addressWallet }}</p>
         </hgroup>
         <header>
           <p>Wallet Info</p><small>{{ props.addressWallet }}</small></header>        
@@ -58,5 +58,8 @@
   .errorSection {
     background-color: rgb(255, 166, 0);
     color: rgb(0, 0, 0);
+  }
+  .viewAddress {
+    font-size: x-small; 
   }
 </style>
