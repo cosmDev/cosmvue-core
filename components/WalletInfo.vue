@@ -3,7 +3,7 @@
     <div>
       <article v-if="isLogged">
         <hgroup>
-          <h2>Wallet Info</h2>
+          <header>Wallet Info</header>
           <p style="font-size: 20px;">{{ props.addressWallet }}</p>
         </hgroup>  
         <table> 
