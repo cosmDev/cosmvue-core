@@ -3,7 +3,7 @@
     <div>
       <article>
         <header><slot name="title" /></header>
-        <button><slot name="title-btn" /></button> 
+        <button style="width: 100%;"><slot name="title-btn" /></button> 
       </article>  
     </div> 
   </div>
