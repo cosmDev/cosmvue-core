@@ -32,7 +32,8 @@
         </table>
       </article>  
       <article v-else class="errorSection">
-        <header>Please connect your wallet</header>        
+        <header class="errorSection">Error</header>   
+        <h6>Please connect your wallet</h6>     
       </article> 
     </div> 
   </div>
