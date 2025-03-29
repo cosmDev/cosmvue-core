@@ -2,31 +2,30 @@
   <div class="grid">
     <div>
       <article v-if="isLogged">
-        <header>Wallet Info</header>
-        <small>{{ props.addressWallet }}</small>
+        <header>Wallet Info - <small>{{ props.addressWallet }}</small></header>        
         <table> 
           <tbody>
             <tr>
               <th scope="row">Available amount</th>
-              <td>4,880</td> 
+              <td>0</td> 
             </tr>
             <tr>
               <th scope="row">Delegated amount</th>
-              <td>12,104</td>
+              <td>0</td>
             </tr>
             <tr>
               <th scope="row">Undelegated</th>
-              <td>12,742</td>
+              <td>0</td>
             </tr>
             <tr>
               <th scope="row">Reward</th>
-              <td>6,779</td> 
+              <td>0</td> 
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <th scope="row">Average</th>
-              <td>9,126</td> 
+              <th scope="row">Total</th>
+              <td>0</td> 
             </tr>
           </tfoot>
         </table>
@@ -52,7 +51,7 @@
 
 <style>
   .errorSection {
-    background-color: rgb(255, 0, 0);
-    color: rgb(255, 254, 254);
+    background-color: rgb(255, 166, 0);
+    color: rgb(0, 0, 0);
   }
 </style>
