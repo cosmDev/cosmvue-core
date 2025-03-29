@@ -2,10 +2,12 @@
   <div class="grid">
     <div>
       <article v-if="isLogged">
-          <hgroup>
-            <h2>Wallet Info</h2>
-            <p>{{ props.addressWallet }}</p>
-          </hgroup>        
+        <hgroup>
+          <h2>Get inspired with CSS</h2>
+          <p>How to use CSS to add glam to your Website?</p>
+        </hgroup>
+        <header>
+          <p>Wallet Info</p><small>{{ props.addressWallet }}</small></header>        
         <table> 
           <tbody>
             <tr>
