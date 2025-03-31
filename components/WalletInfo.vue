@@ -2,10 +2,14 @@
   <div class="grid">
     <div>
       <article v-if="isLogged">
-        <header>Wallet Info</header>
-        <hgroup>          
-          <p style="font-size: 20px;">{{ props.addressWallet }}</p>
-        </hgroup>  
+        <header> 
+        <hgroup>
+           Wallet Info
+          <p style="font-size: 16px;"><i>{{ cosmvueStore.address }}</i></p>
+        </hgroup>
+        
+        </header> 
+
         <table> 
           <tbody>
             <tr>
@@ -33,23 +37,57 @@
           </tfoot>
         </table>
       </article>  
-      <article v-else class="errorSection">
+<!--       <article v-else class="errorSection">
         <header class="errorSection">Error</header>   
         <h6>Please connect your wallet</h6>     
-      </article> 
+      </article>  -->
     </div> 
   </div>
 </template>
 
-<script setup>
-  const props = defineProps(['addressWallet'])
-  let isLogged = false
+<script>
+import { watch, defineComponent, ref } from 'vue';
+import { useCosmvueStore } from '../stores/cosmvue'
 
-  if (props.addressWallet && props.addressWallet.trim() !== '') {
-    isLogged = true;
+export default defineComponent({
+  props: {
+    addressWalletInfo: {
+      type: String,
+      required: true,
+    },
+  },
+setup(props) {
+  
+  let finallAddress = props.addressWalletInfo; // Initialize with prop value
+  const isLogged = ref(false); // Reactive variable for login statu 
+
+  const cosmvueStore = useCosmvueStore()
+
+  // Watch for changes in props.addressWalletInfo
+  watch(
+    () => cosmvueStore.address,
+    (newAddress) => {
+      console.log('addressWalletInfo changed to', newAddress);
+      cosmvueStore.address = newAddress; // Update the store with the new address
+      isLogged.value = !!newAddress; // Update isLogged based on the new value
+      finallAddress = newAddress; // Update finallAddress with the new value
+      console.log('Updated finallAddress:', finallAddress);
+    }
+  );
+
+  // Check if the wallet is logged in on mount
+  if (props.addressWalletInfo) {
+    isLogged.value = true;
   }
 
-  console.log(props.addressWallet)
+  return {
+    isLogged,
+    cosmvueStore,
+    finallAddress
+  };
+},
+
+});
 </script>
 
 <style>
