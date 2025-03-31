@@ -7,14 +7,14 @@ on:
   release:
     types: [created]
 
-jobs:      
+jobs:
   publish-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: "20.x"
           registry-url: https://registry.npmjs.org/
       - run: npm publish --access=public
         env:

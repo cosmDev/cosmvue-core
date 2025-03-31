@@ -1,34 +1,45 @@
-<template > 
- 
-  <div class="grid" >
-   
-    <div  >
-      <article>
-        <header><slot name="title" /></header>
-        <button @click="onClickLogin()" style="width: 100%;"><slot name="title-btn" /></button> 
-      </article>  
-    </div>  
-  </div>
+<template>
+  <v-btn
+    v-if="!cosmvueStore.isLogged"
+    class="me-2"
+    color="grey"
+    height="40"
+    variant="flat"
+    width="120"
+    @click="onClickLogin()"
+    :disabled="!chainId"
+  >
+    <slot name="title-btn" />
+  </v-btn>
+  <v-btn
+    v-else
+    class="me-2"
+    color="grey"
+    height="40"
+    variant="flat"
+    width="120"
+    @click="onClickLogout()"
+  >
+    Logout
+  </v-btn>
 </template>
 
 <script setup>
+import { useCosmvueStore } from "../stores/cosmvue";
+const cosmvueStore = useCosmvueStore();
+const { chainId } = defineProps(["chainId"]);
 
-import { useCosmvueStore } from '../stores/cosmvue'
-const cosmvueStore = useCosmvueStore()
-
-const { chainId } = defineProps(['chainId'])
-
-async function onClickLogin() { 
-    if (!window.getOfflineSigner || !window.keplr) {
-        alert("Please install keplr extension");
-    } 
-    console.log(chainId);
-    //const chainId = "osmosis-1";
-    await window.keplr.enable(chainId);
-    const offlineSigner = window.getOfflineSigner(chainId);
-    const accounts = await offlineSigner.getAccounts(); 
-    cosmvueStore.setAddress(accounts[0].address);
-    console.log("cosmvueStore", cosmvueStore.address); 
- 
+async function onClickLogin() {
+  if (!window.getOfflineSigner || !window.keplr) {
+    alert("Please install keplr extension");
+  }
+  await window.keplr.enable(chainId);
+  const offlineSigner = window.getOfflineSigner(chainId);
+  const accounts = await offlineSigner.getAccounts();
+  cosmvueStore.setAddress(accounts[0].address);
+  console.log("cosmvueStore", cosmvueStore.address);
+}
+async function onClickLogout() {
+  cosmvueStore.setLogout();
 }
 </script>

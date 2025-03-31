@@ -1,10 +1,10 @@
 {
   "name": "cosmvue-core",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier .  --write"
   },
   "keywords": [],
   "author": "cosmdev",
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/cosmDev/cosmvue-core/issues"
   },
-  "homepage": "https://github.com/cosmDev/cosmvue-core#readme"
+  "homepage": "https://github.com/cosmDev/cosmvue-core#readme",
+  "dependencies": {
+    "pinia": "^3.0.1"
+  },
+  "devDependencies": {
+    "prettier": "3.5.3"
+  }
 }
