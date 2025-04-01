@@ -1,31 +1,41 @@
 <template>
-  <v-sheet v-if="isLogged" class="ma-2 pa-2" rounded>
-    <p class="ma-4" style="font-size: 16px">
+  <v-sheet
+    border
+    v-if="isLogged"
+    min-height="400"
+    class="ma-2 pa-2"
+    rounded="lg"
+  >
+    <v-btn height="32" min-width="5" variant="tonal">
+      <v-icon icon="mdi-content-copy" size="16"></v-icon>
+    </v-btn>
+    <v-chip class="ma-2" label>
       <b>{{ cosmvueStore.address }}</b>
-    </p>
+    </v-chip>
+
     <v-table>
       <tbody>
         <tr>
           <th scope="row">Available amount</th>
-          <td>0</td>
+          <td>{{ cosmvueStore.spendableBalances }}</td>
         </tr>
         <tr>
           <th scope="row">Delegated amount</th>
-          <td>0</td>
+          <td>{{ cosmvueStore.totalDelegations }}</td>
         </tr>
         <tr>
           <th scope="row">Undelegated</th>
-          <td>0</td>
+          <td>{{ cosmvueStore.totalUnbound }}</td>
         </tr>
         <tr>
           <th scope="row">Reward</th>
-          <td>0</td>
+          <td>{{ cosmvueStore.totalRewards }}</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th scope="row">Total</th>
-          <td>0</td>
+          <td>{{ cosmvueStore.totalTokens }}</td>
         </tr>
       </tfoot>
     </v-table>
@@ -52,12 +62,26 @@ export default defineComponent({
     // Watch for changes in props.addressWalletInfo
     watch(
       () => cosmvueStore.address,
-      (newAddress) => {
+      async (newAddress) => {
         console.log("addressWalletInfo changed to", newAddress);
         cosmvueStore.address = newAddress; // Update the store with the new address
         isLogged.value = !!newAddress; // Update isLogged based on the new value
         finallAddress = newAddress; // Update finallAddress with the new value
         console.log("Updated finallAddress:", finallAddress);
+
+        if (!newAddress) {
+          cosmvueStore.isLogged = false;
+          cosmvueStore.setLogout();
+          console.log("No address found, logging out");
+          return;
+        }
+        await cosmvueStore.keplrConnect();
+        await cosmvueStore.initRpc();
+
+        await cosmvueStore.getBankModule();
+        await cosmvueStore.getStakingModule();
+        await cosmvueStore.getDistribModule();
+        await cosmvueStore.getWalletAmount();
       },
     );
 

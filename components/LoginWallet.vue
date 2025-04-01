@@ -1,10 +1,9 @@
 <template>
   <v-btn
     v-if="!cosmvueStore.isLogged"
-    class="me-2"
-    color="grey"
+    class="me-6"
     height="40"
-    variant="flat"
+    variant="tonal"
     width="120"
     @click="onClickLogin()"
     :disabled="!chainId"
@@ -13,10 +12,9 @@
   </v-btn>
   <v-btn
     v-else
-    class="me-2"
-    color="grey"
+    class="me-6"
     height="40"
-    variant="flat"
+    variant="tonal"
     width="120"
     @click="onClickLogout()"
   >
