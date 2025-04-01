@@ -1,31 +1,4 @@
 export default [
-  /*     {
-    chainId: 'earendel-1',
-    name: 'Qwoyn',
-    desc: 'Experience the Future of Blockchain Technology.',
-    slot: "qwoyn",
-    mode: 'testnet',
-    apiURL: 'https://testnet-api.qwoyn.studio',
-    rpcURL: 'https://testnet-rpc.qwoyn.studio',
-    coinLookup: {
-      viewDenom: 'QWOYN',
-      chainDenom: 'uqwoyn',
-      addressPrefix: 'qwoyn',
-      icon: `https://i.imgur.com/r5urIgD.png`,
-      banner: "https://i.imgur.com/VBAz0cj.png",
-    },
-    coingeckoId: 'bitcanna',
-    feeMultiplier: 1.3,
-    gasPrice: 0.075,
-    color: '#3AC0B8',
-    colorChart: ["#107c75", "#3AC0B8", "#70e5dd", "#d0eae8"],
-    modules: {
-      feeGrant: true,
-      authz: true,
-      wasm: true,
-      group: true,
-    }
-  },  */
   {
     chainId: "cosmoshub-4",
     name: "Atom",
@@ -82,35 +55,6 @@ export default [
       authz: true,
       wasm: false,
       group: false,
-    },
-  },
-  {
-    chainId: "bitcanna-1",
-    name: "BitCanna",
-    desc: "Harnessing the power of blockchain to create equal opportunities for cannabis-related industries ",
-    slot: "bitcanna",
-    mode: "mainnet",
-    apiURL: "https://lcd.bitcanna.io",
-    rpcURL: "https://rpc.bitcanna.io",
-    coinLookup: {
-      viewDenom: "BCNA",
-      chainDenom: "ubcna",
-      addressPrefix: "bcna",
-      icon: `https://raw.githubusercontent.com/cosmos/chain-registry/master/bitcanna/images/bcna.svg`,
-      banner:
-        "https://pbs.twimg.com/profile_banners/602625556/1649007099/1500x500",
-    },
-    explorerUrl: "https://www.mintscan.io/bitcanna/txs/",
-    coingeckoId: "bitcanna",
-    feeMultiplier: 1.9,
-    gasPrice: 0.0025,
-    color: "#33ffc9",
-    colorChart: ["#b3ffeb", "#33ffc9", "#00b383", "#004d38"],
-    modules: {
-      feeGrant: true,
-      authz: true,
-      wasm: false,
-      group: true,
     },
   },
   {
