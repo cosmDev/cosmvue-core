@@ -127,8 +127,8 @@ export const useCosmvueStore = defineStore("cosmvue", {
         totalUnbound = 0.0;
       }
 
-      this.totalDelegations = (total / 1000000).toFixed(2);
-      this.totalUnbound = (totalUnbound / 1000000).toFixed(2);
+      this.totalDelegations = (total / 1000000).toFixed(6);
+      this.totalUnbound = (totalUnbound / 1000000).toFixed(6);
       this.poolStaking = getPoolStaking.pool;
     },
     async getDistribModule() {

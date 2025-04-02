@@ -5,9 +5,9 @@
     min-height="400"
     class="ma-2 pa-2"
     rounded="lg"
-  >
-    <v-btn height="32" min-width="5" variant="tonal">
-      <v-icon icon="mdi-content-copy" size="16"></v-icon>
+  > 
+    <v-btn height="32" min-width="5" variant="tonal" class="ml-4">
+      <v-icon icon="mdi-content-copy" size="16" :color="cosmosConfig[cosmvueStore.setChainSelected].color"></v-icon>
     </v-btn>
     <v-chip class="ma-2" label>
       <b>{{ cosmvueStore.address }}</b>
@@ -17,25 +17,45 @@
       <tbody>
         <tr>
           <th scope="row">Available amount</th>
-          <td>{{ cosmvueStore.spendableBalances }}</td>
+          <td>{{ cosmvueStore.spendableBalances }} 
+            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+            </strong>
+          </td>
         </tr>
         <tr>
           <th scope="row">Delegated amount</th>
-          <td>{{ cosmvueStore.totalDelegations }}</td>
+          <td>{{ cosmvueStore.totalDelegations }} 
+            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+            </strong>
+          </td>
         </tr>
         <tr>
           <th scope="row">Undelegated</th>
-          <td>{{ cosmvueStore.totalUnbound }}</td>
+          <td>{{ cosmvueStore.totalUnbound }}
+            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+            </strong>
+          </td>
         </tr>
         <tr>
           <th scope="row">Reward</th>
-          <td>{{ cosmvueStore.totalRewards }}</td>
+          <td>{{ cosmvueStore.totalRewards }}
+            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+            </strong>
+          </td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th scope="row">Total</th>
-          <td>{{ cosmvueStore.totalTokens }}</td>
+          <td>{{ cosmvueStore.totalTokens }}
+            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+            </strong>
+          </td>
         </tr>
       </tfoot>
     </v-table>
