@@ -19,7 +19,6 @@ import cosmosConfig from "../cosmos.config.js";
 Chart.register(...registerables);
 
 export default defineComponent({
-  props: ["balance", "totalDelegations", "totalUnbound", "totalRewards"],
   name: "HomeChart",
   components: { DoughnutChart },
   data: () => ({

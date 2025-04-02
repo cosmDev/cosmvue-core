@@ -31,6 +31,15 @@ import cosmvueCore from 'cosmvue-core';
 app.use(cosmvueCore) 
 ```
 
+Use component:
+```html
+<login-wallet chain-id="cosmoshub-4">
+<wallet-info />
+<wallet-actions />
+<wallet-chart />
+<chain-info />
+```
+
 ## Contributing
 
 Contributions are welcome! Please follow the [contribution guidelines](CONTRIBUTING.md) to get started.

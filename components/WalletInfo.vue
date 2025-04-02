@@ -118,13 +118,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-.errorSection {
-  background-color: rgb(255, 166, 0);
-  color: rgb(0, 0, 0);
-}
-.viewAddress {
-  font-size: x-small;
-}
-</style>
