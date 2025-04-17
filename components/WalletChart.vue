@@ -1,10 +1,16 @@
 <template>
-  <v-sheet v-if="store.isLogged" class="ma-2 pa-2" height="350" rounded>
+  <v-sheet border v-if="store.isLogged" class="ma-2 pa-2" min-height="400" rounded="lg">
+    <v-row no-gutters>
+      <v-col cols="12" sm="6">
+        <v-sheet class="text-h6 pa-2"> Wallet chart </v-sheet>
+      </v-col>
+    </v-row>
     <DoughnutChart
       :chartData="chartData"
       :options="chartOptions"
       width="300"
       height="300"
+      spacing="2" 
     />
   </v-sheet>
 </template>
@@ -24,18 +30,17 @@ export default defineComponent({
   data: () => ({
     cosmosConfig: cosmosConfig,
     finalChartColors: "",
-    testData: "",
     options: "",
-    store: useCosmvueStore(),
+    store: useCosmvueStore()
   }),
   computed: {
-    //...mapState([ 'defaultChain']),
+ 
     chartData() {
       const store = useCosmvueStore();
       return {
         labels: ["Available", "Delegated", "Undelegated", "Reward"],
         datasets: [
-          {
+          { 
             label: "Data",
             data: [
               store.spendableBalances,
@@ -54,27 +59,27 @@ export default defineComponent({
         responsive: true,
         plugins: {
           legend: {
-            display: false,
+            display: true,
+            position: 'bottom',
+ 
           },
           title: {
-            display: true,
-            text: "",
+            display: false 
           },
         },
       };
     },
   },
   watch: {
-    setChainSelected() {
-      const store = useCosmvueStore();
+    setChainSelected() { 
       this.finalChartColors =
-        this.cosmosConfig[store.setChainSelected].colorChart;
+        this.cosmosConfig[this.store.setChainSelected].colorChart;
     },
   },
   async mounted() {
-    const store = useCosmvueStore();
+ 
     this.finalChartColors =
-      this.cosmosConfig[store.setChainSelected].colorChart;
+      this.cosmosConfig[this.store.setChainSelected].colorChart;
   },
 });
 </script>

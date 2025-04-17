@@ -1,7 +1,7 @@
 <template>
   <v-btn
     v-if="!cosmvueStore.isLogged"
-    class="me-6"
+    class="me-6 hover"
     height="40"
     variant="tonal"
     width="120"
@@ -12,7 +12,7 @@
   </v-btn>
   <v-btn
     v-else
-    class="me-6"
+    class="me-6 hover"
     height="40"
     variant="tonal"
     width="120"

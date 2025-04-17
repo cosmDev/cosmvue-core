@@ -1,12 +1,12 @@
 <template>
   <v-sheet
     border
-    v-if="isLogged"
+    v-if="cosmvueStore.isLogged"
     min-height="400"
     class="ma-2 pa-2"
     rounded="lg"
   > 
-    <v-btn height="32" min-width="5" variant="tonal" class="ml-4">
+    <v-btn height="32" min-width="5" variant="tonal" class="ml-4" @click="copyAddress">
       <v-icon icon="mdi-content-copy" size="16" :color="cosmosConfig[cosmvueStore.setChainSelected].color"></v-icon>
     </v-btn>
     <v-chip class="ma-2" label>
@@ -17,44 +17,61 @@
       <tbody>
         <tr>
           <th scope="row">Available amount</th>
-          <td>{{ cosmvueStore.spendableBalances }} 
-            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
-                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
-            </strong>
+         
+          <td>
+            <v-skeleton-loader :loading="!cosmvueStore.dataIsLoaded" type="list-item">
+              {{ cosmvueStore.spendableBalances }} 
+              <strong class="ml-1" :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                  {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+              </strong>
+            </v-skeleton-loader>
           </td>
+          
         </tr>
         <tr>
           <th scope="row">Delegated amount</th>
-          <td>{{ cosmvueStore.totalDelegations }} 
-            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
-                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
-            </strong>
+          <td>
+            <v-skeleton-loader :loading="!cosmvueStore.dataIsLoaded" type="list-item">
+              {{ cosmvueStore.totalDelegations }} 
+              <strong class="ml-1" :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                  {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+              </strong>
+            </v-skeleton-loader>
           </td>
         </tr>
         <tr>
           <th scope="row">Undelegated</th>
-          <td>{{ cosmvueStore.totalUnbound }}
-            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
-                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
-            </strong>
+          <td>
+            <v-skeleton-loader :loading="!cosmvueStore.dataIsLoaded" type="list-item">
+              {{ cosmvueStore.totalUnbound }}
+              <strong class="ml-1" :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                  {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+              </strong>
+            </v-skeleton-loader>
           </td>
         </tr>
         <tr>
           <th scope="row">Reward</th>
-          <td>{{ cosmvueStore.totalRewards }}
-            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
-                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
-            </strong>
+          <td>
+            <v-skeleton-loader :loading="!cosmvueStore.dataIsLoaded" type="list-item">
+              {{ cosmvueStore.totalRewards }}
+              <strong class="ml-1" :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                  {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+              </strong>
+            </v-skeleton-loader>
           </td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th scope="row">Total</th>
-          <td>{{ cosmvueStore.totalTokens }}
-            <strong :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
-                {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
-            </strong>
+          <td>
+            <v-skeleton-loader :loading="!cosmvueStore.dataIsLoaded" type="list-item">
+              {{ cosmvueStore.totalTokens }}
+              <strong class="ml-1" :style="'color:' + cosmosConfig[cosmvueStore.setChainSelected].color"> 
+                  {{ cosmosConfig[cosmvueStore.setChainSelected].coinLookup.viewDenom }}
+              </strong>
+          </v-skeleton-loader>
           </td>
         </tr>
       </tfoot>
@@ -74,47 +91,33 @@ export default defineComponent({
     },
   },
   setup(props) {
-    let finallAddress = props.addressWalletInfo; // Initialize with prop value
-    const isLogged = ref(false); // Reactive variable for login statu
-
+ 
+    
     const cosmvueStore = useCosmvueStore();
+ 
 
-    // Watch for changes in props.addressWalletInfo
-    watch(
-      () => cosmvueStore.address,
-      async (newAddress) => {
-        console.log("addressWalletInfo changed to", newAddress);
-        cosmvueStore.address = newAddress; // Update the store with the new address
-        isLogged.value = !!newAddress; // Update isLogged based on the new value
-        finallAddress = newAddress; // Update finallAddress with the new value
-        console.log("Updated finallAddress:", finallAddress);
-
-        if (!newAddress) {
-          cosmvueStore.isLogged = false;
-          cosmvueStore.setLogout();
-          console.log("No address found, logging out");
-          return;
-        }
-        await cosmvueStore.keplrConnect();
-        await cosmvueStore.initRpc();
-
-        await cosmvueStore.getBankModule();
-        await cosmvueStore.getStakingModule();
-        await cosmvueStore.getDistribModule();
-        await cosmvueStore.getWalletAmount();
-      },
-    );
-
-    // Check if the wallet is logged in on mount
-    if (props.addressWalletInfo) {
-      isLogged.value = true;
-    }
-
-    return {
-      isLogged,
-      cosmvueStore,
-      finallAddress,
+    return { 
+      cosmvueStore, 
     };
   },
+  methods: {
+    async copyAddress() {
+      const mime = 'text/plain'
+      const source = ref([
+        new ClipboardItem({
+          [mime]: new Blob(['plain text'], { type: mime }),
+        })
+      ])
+      const clipboardItem = new ClipboardItem({
+        [mime]: new Blob([this.cosmvueStore.address], { type: mime }),
+      });
+      try {
+        await navigator.clipboard.write([clipboardItem]);
+        console.log("Address copied to clipboard");
+      } catch (err) {
+        console.error("Failed to copy address: ", err);
+      }
+    },
+  }, 
 });
 </script>

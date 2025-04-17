@@ -20,11 +20,16 @@
   "dependencies": {
     "@cosmjs/stargate": "^0.33.1",
     "@cosmjs/tendermint-rpc": "^0.33.1",
+    "@mdi/font": "^7.4.47",
+    "@vueuse/core": "^13.0.0",
     "axios": "^1.8.4",
+    "chain-registry": "^1.69.175",
     "chart.js": "^4.4.8",
     "long": "^5.3.1",
+    "millify": "^6.1.0",
     "pinia": "^3.0.1",
-    "vue-chart-3": "^3.1.8"
+    "vue-chart-3": "^3.1.8",
+    "vuetify": "^3.8.0"
   },
   "devDependencies": {
     "prettier": "3.5.3"
