@@ -16,18 +16,7 @@ import { setMsg } from "../libs/msgType";
 import * as bank from "cosmjs-types/cosmos/bank/v1beta1/query";
 import * as staking from "cosmjs-types/cosmos/staking/v1beta1/query";
 import * as distrib from "cosmjs-types/cosmos/distribution/v1beta1/query";
-import * as gov from "cosmjs-types/cosmos/gov/v1beta1/query";
-import * as authz from "cosmjs-types/cosmos/authz/v1beta1/query";
-import * as feegrant from "cosmjs-types/cosmos/feegrant/v1beta1/query";
-import * as tx from "cosmjs-types/cosmos/tx/v1beta1/service";
-
-import {
-  GenericAuthorization,
-  GrantAuthorization,
-} from "cosmjs-types/cosmos/authz/v1beta1/authz";
-import * as group from "cosmjs-types/cosmos/group/v1/query";
-import { GetTxsEventRequest } from "cosmjs-types/cosmos/tx/v1beta1/service";
-import { OrderBy } from "cosmjs-types/cosmos/tx/v1beta1/service";
+ 
 
 export const useCosmvueStore = defineStore("cosmvue", {
   state: () => {
